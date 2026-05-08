@@ -1,6 +1,6 @@
 fastapi
 uvicorn
-python-multipart
+python-multipart # For handling file uploads
 
 pydantic
 pydantic-settings
@@ -10,7 +10,7 @@ openai
 # sentence-transformers
 qdrant-client
 
-pypdf
+pypdf # For PDF processing
 python-docx
 unstructured
 
@@ -30,3 +30,5 @@ rich
 
 pytest
 pytest-asyncio
+
+sentence-transformers # For generating embeddings 
