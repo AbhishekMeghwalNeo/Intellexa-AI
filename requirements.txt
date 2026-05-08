@@ -7,7 +7,7 @@ pydantic-settings
 
 openai
 
-# sentence-transformers
+# For vector database and embeddings
 qdrant-client
 
 pypdf # For PDF processing
