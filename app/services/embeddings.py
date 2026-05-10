@@ -1,6 +1,5 @@
 from sentence_transformers import SentenceTransformer
 
-
 class EmbeddingService:
 
     model = SentenceTransformer(
@@ -19,3 +18,16 @@ class EmbeddingService:
         )
 
         return embeddings.tolist()
+    
+    @classmethod
+    def generate_query_embedding(
+        cls,
+        query: str
+    ) -> list[float]:
+
+        embedding = cls.model.encode(
+            query,
+            convert_to_numpy=True
+        )
+
+        return embedding.tolist()

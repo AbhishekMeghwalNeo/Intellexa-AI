@@ -6,7 +6,7 @@ from pydantic import BaseModel
 
 from app.services.ingestion import DocumentIngestionService
 from app.services.embeddings import EmbeddingService
-from app.vectorstore.qdrant_manager import QdrantManager
+# from app.vectorstore.qdrant_manager import QdrantManager
 from app.services.retrieval import RetrievalService
 
 router = APIRouter()
