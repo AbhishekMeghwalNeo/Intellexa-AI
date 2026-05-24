@@ -34,5 +34,3 @@ app.include_router(upload_router)
 app.include_router(query_router)
 app.include_router(health_router)
 
-if __name__ == "__main__":
-    uvicorn.run("app.main:app", host="0.0.0.0", port=8080, reload=True)

@@ -10,4 +10,5 @@ Build a working:
 >
 > # Command to Run Uvicorn App on a backend server
 >
-> uvicorn app.main:app --host 0.0.0.0 --port 8080 --reload
+> Running the backend: uvicorn app.main:app --host 0.0.0.0 --port 8080 --reload
+> Running the frontend: 
