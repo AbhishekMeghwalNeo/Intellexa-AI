@@ -34,3 +34,5 @@ pytest-asyncio
 sentence-transformers # For generating embeddings 
 
 chromadb # For vector database management
+
+streamlit # For building a simple UI 
