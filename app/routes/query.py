@@ -1,4 +1,5 @@
 from fastapi import APIRouter
+from typing import Optional
 from pydantic import BaseModel
 
 from app.services.embeddings import EmbeddingService
@@ -14,24 +15,21 @@ class QueryRequest(BaseModel):
 
 class QueryResponse(BaseModel):
     question: str
-    answer: str
     retrieved_chunks: list[str]
+    answer: Optional[str] = None
 
 
 @router.post("/query", response_model=QueryResponse)
 async def query_document(request: QueryRequest):
 
-    query_embedding = EmbeddingService.generate_query_embedding(request.question)
-
-    retrieved_chunks = RetrievalService.retrieve_relevant_chunks(query_embedding=query_embedding,top_k=3)
-
-    answer = LLMService.generate_answer(
-        question=request.question,
-        retrieved_chunks=retrieved_chunks
+    results = RetrievalService.retrieve_relevant_chunks(
+        query=request.question
     )
+
+    retrieved_chunks = results["documents"][0]
 
     return QueryResponse(
         question=request.question,
-        answer=answer,
-        retrieved_chunks=retrieved_chunks
+        retrieved_chunks=retrieved_chunks,
+        answer= None
     )

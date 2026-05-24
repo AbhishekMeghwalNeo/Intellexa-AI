@@ -8,6 +8,7 @@ from app.services.ingestion import DocumentIngestionService
 from app.services.embeddings import EmbeddingService
 # from app.vectorstore.qdrant_manager import QdrantManager
 from app.services.retrieval import RetrievalService
+from app.vectorstore.chroma_manager import ChromaManager
 
 router = APIRouter()
 
@@ -57,8 +58,14 @@ async def upload_document(file: UploadFile = File(...)) -> UploadResponse:
     # Generate embeddings for the chunks
     embeddings = EmbeddingService.generate_embeddings(chunks)
 
-    # Store the Chunks and their embeddings in the vector database
-    vector_db_status = RetrievalService.store_embeddings(chunks=chunks,embeddings=embeddings)
+    # Initialize the ChromaManager and add the documents to the ChromaDB vector store
+    chroma_manager = ChromaManager()
+    try :
+        chroma_manager.add_documents(chunks=chunks, embeddings=embeddings)
+        vector_db_status = "Embeddings stored in ChromaDB successfully"
+    except Exception as e:
+        vector_db_status = f"Failed to store embeddings in ChromaDB: {str(e)}"
+
 
     return UploadResponse(
         message="File uploaded successfully",
