@@ -28,8 +28,13 @@ async def query_document(request: QueryRequest):
 
     retrieved_chunks = results["documents"][0]
 
+    answer = LLMService.generate_answer(
+        question=request.question,
+        retrieved_chunks=retrieved_chunks
+    )
+
     return QueryResponse(
         question=request.question,
         retrieved_chunks=retrieved_chunks,
-        answer= None
+        answer=answer
     )
