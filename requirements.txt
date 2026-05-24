@@ -12,7 +12,6 @@ qdrant-client
 
 pypdf # For PDF processing
 python-docx
-unstructured
 
 tiktoken
 nltk
@@ -36,3 +35,5 @@ sentence-transformers # For generating embeddings
 chromadb # For vector database management
 
 streamlit # For building a simple UI 
+
+langfuse # For GenAI observability and monitoring 
