@@ -9,7 +9,7 @@ from app.core.logger import logger
 from app.services.ingestion import DocumentIngestionService
 from app.services.embeddings import EmbeddingService
 # from app.vectorstore.qdrant_manager import QdrantManager
-from app.services.retrieval import RetrievalService
+# from app.services.retrieval import RetrievalService
 from app.vectorstore.chroma_manager import ChromaManager
 
 router = APIRouter()
